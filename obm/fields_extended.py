@@ -3,7 +3,7 @@
 import collections
 from .datastruct import Bits
 from .fields_base import FieldBase
-from .package_base import PackageBase
+from .model_base import PackageBase
 
 
 class PrefixedOptionsField(FieldBase):

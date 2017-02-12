@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 # coding=utf-8
-from ps import Package, IntField, BitsField
-from ps.utils import one_complement_checksum
+from obm import Model, IntField, BitsField
+from obm.utils import one_complement_checksum
 
 from example.tcp import TCP
 
 
-class IP(Package):
+class IP(Model):
     version = IntField(4, default=4)
     ihl = IntField(4, default=5)
     dscp = IntField(6)

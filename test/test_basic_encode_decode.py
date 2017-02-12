@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # coding=utf-8
 import unittest
-from ps.datastruct import Bits
-from ps.fields_base import FieldBase
+from obm.datastruct import Bits
+from obm.fields_base import FieldBase
 from example.ethernet import Ethernet
 from example.ipv4 import IP
 from example.tcp import TCP
@@ -172,7 +172,7 @@ class TestBasicDecodeEncode(unittest.TestCase):
         self.assertEqual(tcp.window_size, 8192)
         self.assertEqual(tcp.urgent_pointer, 0x0000)
 
-        from ps.fields_extended import PrefixedOptionsField
+        from obm.fields_extended import PrefixedOptionsField
         self.assertIsInstance(TCP.options, PrefixedOptionsField)
         options = tcp.options
         self.assertIsInstance(options, list)

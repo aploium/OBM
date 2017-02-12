@@ -141,3 +141,17 @@ class PackageBase(metaclass=MetaPackage):
     @property
     def header_data(self):
         return self.solid_data + self.variable_data
+
+    @classmethod
+    def fromhex(cls, hex_str: str, drop_payload=False, parent=None):
+        return cls.frombytes(bytes.fromhex(hex_str), drop_payload=drop_payload, parent=parent)
+
+    def __repr__(self):
+        return "{}<{} #payload: {}>".format(
+            self.__class__.__name__,
+            " ".join(
+                "{}={}".format(k, getattr(self, k))
+                for k in self.fields
+            ),
+            self.payload
+        )

@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # coding=utf-8
-from ps import Package, IntField, BitsField, PrefixedOptionsField
-from ps.utils import one_complement_checksum
+from obm import Model, IntField, BitsField, PrefixedOptionsField
+from obm.utils import one_complement_checksum
 
 
-class TCP(Package):
+class TCP(Model):
     src_port = IntField(16)
     dst_port = IntField(16)
 
@@ -27,26 +27,26 @@ class TCP(Package):
     checksum = IntField(16)
     urgent_pointer = IntField(16)
 
-    class OptionMaxSegmentSize(Package):
+    class OptionMaxSegmentSize(Model):
         prefix = IntField(8, default=2)
         length = IntField(8, default=4)
         value = IntField(16)
 
-    class OptionWindowScale(Package):
+    class OptionWindowScale(Model):
         prefix = IntField(8, default=3)
         length = IntField(8, default=3)
         value = IntField(8)
 
-    class OptionSelectiveAckPermitted(Package):
+    class OptionSelectiveAckPermitted(Model):
         prefix = IntField(8, default=4)
         length = IntField(8, default=2)
 
-    class OptionSACK(Package):
+    class OptionSACK(Model):
         prefix = IntField(8, default=5)
         length = IntField(8)
         value = BitsField(length=lambda self: 8 * (self.length - 2))
 
-    class OptionTimestamp(Package):
+    class OptionTimestamp(Model):
         prefix = IntField(8, default=8)
         length = IntField(8, default=10)
         value = IntField(64)
